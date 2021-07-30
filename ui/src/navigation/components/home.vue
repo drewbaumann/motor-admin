@@ -96,6 +96,15 @@
         </RouterLink>
       </div>
     </div>
+    <div
+      class="text-center"
+      style="bottom: 0"
+    >
+      <a
+        href="https://github.com/omohokcoj/motor-admin"
+        target="_blank"
+      >Motor Admin v{{ version }}</a>
+    </div>
   </div>
 </template>
 
@@ -107,6 +116,7 @@ import DashboardLayout from 'dashboards/components/layout'
 import { widthLessThan } from 'utils/scripts/dimensions'
 import { schema } from 'data_resources/scripts/schema'
 import { homepageStore } from '../scripts/homepage_store'
+import { version } from 'utils/scripts/configs'
 
 export default {
   name: 'Home',
@@ -124,6 +134,7 @@ export default {
     }
   },
   computed: {
+    version: () => version,
     homepageStore () {
       return homepageStore
     },

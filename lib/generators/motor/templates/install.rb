@@ -1,4 +1,8 @@
 class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
+  class MotorConfig < ActiveRecord::Base
+    self.table_name = 'motor_configs'
+  end
+
   def self.up
     create_table :motor_queries do |t|
       t.column :name, :string, null: false
@@ -143,6 +147,11 @@ class <%= migration_class_name %> < ActiveRecord::Migration[<%= ActiveRecord::Mi
     add_index :motor_audits, %i[user_id user_type], name: 'motor_auditable_user_index'
     add_index :motor_audits, :request_uuid
     add_index :motor_audits, :created_at
+
+    MotorConfig.create!(key: 'header.links', value: [{
+      name: '⭐ Star on GitHub',
+      path: 'https://github.com/omohokcoj/motor-admin'
+    }].to_json)
   end
 
   def self.down
